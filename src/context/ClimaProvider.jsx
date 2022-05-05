@@ -27,12 +27,16 @@ try {
   const { ciudad, pais } = datos;
   const appId = import.meta.env.VITE_API_KEY
 
-  const urlClima = `http://api.weatherstack.com/current?access_key=${appId}&query=${ciudad}%${pais}`;
+  const url = `https://api.weatherbit.io/v2.0/current?city=${ciudad}&country=${pais}&key=${appId}`;
+
+  const  data  = await axios(url);
+  const { lat, lon } = data.data.data[0];
+
+  const urlClima = `https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${lon}&lang=es&key=${appId}`;
 
   const { data: clima} = await axios(urlClima);
 
-  //console.log(clima)
-  setResultado(clima);
+  setResultado(clima.data[0]);
 } catch (error) {
   setNoResultado('No hay resultados');
 } finally {

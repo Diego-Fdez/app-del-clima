@@ -6,27 +6,26 @@ const Resultado = () => {
 
   return (
     <div className="contenedor clima">
-      <h2>El Clima de {resultado.location.name} es: </h2>
+      <h2>El Clima de {resultado.city_name} es: </h2>
       <p>
-        <img src={resultado.current.weather_icons} alt={`Imagen ${resultado.current.weather_descriptions}`} />
-        <span>    </span>{resultado.current.temperature}<span>&#x2103;</span>
+        {resultado.temp}<span>&#x2103;</span>
       </p>
-      <p>{resultado.current.weather_descriptions}</p>
+      <p>{resultado.weather.descriptions}</p>
       <div className="temp_min_max">
         <p>
-          Sensación Térmica: {resultado.current.feelslike}<small>°</small>
+          Sensación Térmica: {resultado.app_temp}<small>°</small>
         </p>
         <p>
-          Viento: {resultado.current.wind_speed}<small>km/h</small>
+          Viento: {(parseInt(resultado.wind_spd * 3.6))}<small>km/h</small>
         </p>
         <p>
-          Humedad: {resultado.current.humidity}<small>%</small>
+          Humedad: {parseInt(resultado.rh)}<small>%</small>
         </p>
         <p>
-          Visibilidad: {resultado.current.visibility}<small>km</small>
+          Visibilidad: {resultado.vis}<small>km</small>
         </p>
         <p>
-          Presión: {resultado.current.pressure}<small>mbar</small>
+          Presión: {resultado.pres}<small>mbar</small>
         </p>
       </div>
     </div>
